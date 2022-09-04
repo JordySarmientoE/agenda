@@ -8,6 +8,10 @@ const Button = styled.button`
   font-weight: bold;
   border: none;
   color: ${(props) => getTheme(props.theme, "color")};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  cursor: pointer;
+  font-size: ${(props) => props.font_size};
 `;
 
 const getTheme = (tema, key) => {

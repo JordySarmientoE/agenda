@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div>
       <Nav>
-        <ul>
+        <ul style={{ margin: 0 }}>
           <Li>
             <Link to="/login">Login</Link>
           </Li>

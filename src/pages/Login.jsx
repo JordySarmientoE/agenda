@@ -9,6 +9,18 @@ import { useNavigate } from "react-router-dom";
 import AuthContainer from "../components/containers/AuthContainer";
 import { authContext } from "../context/AuthContext";
 import IconLogin from "../components/images/IconLogin";
+import styled from "styled-components";
+import { colors } from "../utils";
+import LoginImage from "../assets/img/login/login.svg";
+import ContainerInnerLeft from "../components/containers/ContainerInnerLeft";
+import ContainerInnerRight from "../components/containers/ContainerInnerRight";
+
+const LoginTitle = styled.h3`
+  color: ${colors.white};
+  font-size: 24px;
+  padding: 0 0 12px 0;
+  margin: 0;
+`;
 
 const Login = () => {
   const emailRef = useRef();
@@ -25,6 +37,7 @@ const Login = () => {
         password: passwordRef.current.value,
       },
     });
+    navigate("/");
   };
 
   const register = (event) => {
@@ -34,28 +47,35 @@ const Login = () => {
 
   return (
     <AuthContainer>
-      <IconLogin />
-      <Form>
-        <InputIcon
-          innerRef={emailRef}
-          placeholder="Username"
-          type="email"
-          icon={user}
-        />
-        <InputIcon
-          placeholder="Password"
-          type="password"
-          icon={password}
-          innerRef={passwordRef}
-        />
-        <Button theme="secondary" onClick={login}>
-          LOGIN
-        </Button>
-        <Line />
-        <Button theme="ternary" onClick={register}>
-          REGISTRO
-        </Button>
-      </Form>
+      <ContainerInnerLeft image={LoginImage}></ContainerInnerLeft>
+      <ContainerInnerRight>
+        <LoginTitle>LOGIN</LoginTitle>
+        <IconLogin />
+        <Form>
+          <InputIcon
+            innerRef={emailRef}
+            placeholder="Correo"
+            type="email"
+            icon={user}
+          />
+          <InputIcon
+            placeholder="Contraseña"
+            type="password"
+            icon={password}
+            innerRef={passwordRef}
+          />
+          <Button theme="secondary" onClick={login}>
+            LOGIN
+          </Button>
+          <Line />
+          <span style={{ textAlign: "center", color: colors.white }}>
+            ¿No cuentas con una cuenta?
+          </span>
+          <Button theme="ternary" onClick={register}>
+            REGISTRO
+          </Button>
+        </Form>
+      </ContainerInnerRight>
     </AuthContainer>
   );
 };

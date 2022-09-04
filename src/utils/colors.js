@@ -4,5 +4,6 @@ export const colors = {
     primary_color: '#2670E1',
     white: '#FFFFFF',
     secondary_color: '#EA3A57',
-    ternary_color: '#1F7C42'
+    ternary_color: '#1F7C42',
+    black_color: '#1a1818'
 }
