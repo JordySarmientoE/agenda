@@ -19,6 +19,8 @@ const Nav = styled.nav`
   background-color: ${(props) =>
     props.mode ? colors.black_color : colors.black_grey};
   flex-wrap: wrap;
+  min-height: 85px;
+  margin-bottom: 10px;
 
   @media ${device.laptop} {
     flex-direction: column;
@@ -139,10 +141,11 @@ const Navbar = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/calendar"
               style={{
                 textDecorationLine: "none",
                 color: darkMode ? colors.white : colors.black_color,
+                fontWeight: "bold",
               }}
             >
               Calendario

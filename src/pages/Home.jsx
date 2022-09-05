@@ -1,10 +1,11 @@
+import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
 const Home = ({ user }) => {
   return (
     <div>
       <Navbar user={user} />
-      <h1>Home</h1>
+      <Outlet />
     </div>
   );
 };
