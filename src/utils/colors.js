@@ -5,5 +5,6 @@ export const colors = {
     white: '#FFFFFF',
     secondary_color: '#EA3A57',
     ternary_color: '#1F7C42',
-    black_color: '#1a1818'
+    black_color: '#1a1818',
+    black_grey: '#999999'
 }

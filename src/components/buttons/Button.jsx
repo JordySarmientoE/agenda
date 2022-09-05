@@ -12,6 +12,11 @@ const Button = styled.button`
   height: ${(props) => props.height};
   cursor: pointer;
   font-size: ${(props) => props.font_size};
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 `;
 
 const getTheme = (tema, key) => {

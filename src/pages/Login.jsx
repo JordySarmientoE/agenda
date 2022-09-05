@@ -14,12 +14,19 @@ import { colors } from "../utils";
 import LoginImage from "../assets/img/login/login.svg";
 import ContainerInnerLeft from "../components/containers/ContainerInnerLeft";
 import ContainerInnerRight from "../components/containers/ContainerInnerRight";
+import { colorContext } from "../context/ColorContext";
+import ColorChange from "../components/buttons/ColorChange";
 
 const LoginTitle = styled.h3`
-  color: ${colors.white};
+  color: ${(props) => (props.mode ? colors.white : colors.black_color)};
   font-size: 24px;
   padding: 0 0 12px 0;
   margin: 0;
+`;
+
+const RegisterText = styled.span`
+  text-align: center;
+  color: ${(props) => (props.mode ? colors.white : colors.black_color)};
 `;
 
 const Login = () => {
@@ -27,6 +34,7 @@ const Login = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
   const { setUser } = useContext(authContext);
+  const { darkMode } = useContext(colorContext);
 
   const login = (event) => {
     event.preventDefault();
@@ -46,37 +54,40 @@ const Login = () => {
   };
 
   return (
-    <AuthContainer>
-      <ContainerInnerLeft image={LoginImage}></ContainerInnerLeft>
-      <ContainerInnerRight>
-        <LoginTitle>LOGIN</LoginTitle>
-        <IconLogin />
-        <Form>
-          <InputIcon
-            innerRef={emailRef}
-            placeholder="Correo"
-            type="email"
-            icon={user}
-          />
-          <InputIcon
-            placeholder="Contraseña"
-            type="password"
-            icon={password}
-            innerRef={passwordRef}
-          />
-          <Button theme="secondary" onClick={login}>
-            LOGIN
-          </Button>
-          <Line />
-          <span style={{ textAlign: "center", color: colors.white }}>
-            ¿No cuentas con una cuenta?
-          </span>
-          <Button theme="ternary" onClick={register}>
-            REGISTRO
-          </Button>
-        </Form>
-      </ContainerInnerRight>
-    </AuthContainer>
+    <>
+      <ColorChange />
+      <AuthContainer mode={darkMode ? 1 : 0}>
+        <ContainerInnerLeft image={LoginImage}></ContainerInnerLeft>
+        <ContainerInnerRight>
+          <LoginTitle mode={darkMode ? 1 : 0}>LOGIN</LoginTitle>
+          <IconLogin />
+          <Form>
+            <InputIcon
+              innerRef={emailRef}
+              placeholder="Correo"
+              type="email"
+              icon={user}
+            />
+            <InputIcon
+              placeholder="Contraseña"
+              type="password"
+              icon={password}
+              innerRef={passwordRef}
+            />
+            <Button theme="secondary" onClick={login}>
+              LOGIN
+            </Button>
+            <Line />
+            <RegisterText mode={darkMode ? 1 : 0}>
+              ¿No cuentas con una cuenta?
+            </RegisterText>
+            <Button theme="ternary" onClick={register}>
+              REGISTRO
+            </Button>
+          </Form>
+        </ContainerInnerRight>
+      </AuthContainer>
+    </>
   );
 };
 

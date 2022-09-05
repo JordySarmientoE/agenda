@@ -4,13 +4,21 @@ import { colors } from "../utils";
 import Button from "../components/buttons/Button";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { colorContext } from "../context/ColorContext";
+import { useContext } from "react";
+import ColorChange from "../components/buttons/ColorChange";
 
 const NotFoundText = styled.span`
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 10px;
-  color: white;
+  color: ${(props) => (props.mode ? colors.white : colors.black_color)};
   text-align: center;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 `;
 
 const InnerContent = styled.div`
@@ -22,28 +30,37 @@ const InnerContent = styled.div`
 
 const NotFound = () => {
   const navigation = useNavigate();
+  const { darkMode } = useContext(colorContext);
 
   const goHome = () => {
     navigation("/login");
   };
 
   return (
-    <AuthContainer>
-      <InnerContent>
-        <BiSad color={colors.white} size="8em" />
-        <NotFoundText>404</NotFoundText>
-        <NotFoundText>Página no encontrada</NotFoundText>
-        <Button
-          theme="secondary"
-          width="10em"
-          height="2em"
-          onClick={goHome}
-          font_size="2em"
-        >
-          HOME
-        </Button>
-      </InnerContent>
-    </AuthContainer>
+    <>
+      <ColorChange />
+      <AuthContainer mode={darkMode ? 1 : 0}>
+        <InnerContent>
+          <BiSad
+            color={darkMode ? colors.white : colors.black_color}
+            size="8em"
+          />
+          <NotFoundText mode={darkMode ? 1 : 0}>404</NotFoundText>
+          <NotFoundText mode={darkMode ? 1 : 0}>
+            Página no encontrada
+          </NotFoundText>
+          <Button
+            theme="secondary"
+            width="10em"
+            height="2em"
+            onClick={goHome}
+            font_size="2em"
+          >
+            HOME
+          </Button>
+        </InnerContent>
+      </AuthContainer>
+    </>
   );
 };
 

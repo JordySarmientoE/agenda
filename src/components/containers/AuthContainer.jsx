@@ -8,7 +8,8 @@ const AuthContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  background-color: ${colors.black_color};
+  background-color: ${(props) =>
+    props.mode ? colors.black_color : colors.white};
   align-self: center;
   gap: 20px;
 `;

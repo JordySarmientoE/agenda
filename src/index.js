@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContext from './context/AuthContext';
+import ColorContext from './context/ColorContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContext>
-      <App />
+      <ColorContext>
+        <App />
+      </ColorContext>
     </AuthContext>
   </React.StrictMode>
 );
