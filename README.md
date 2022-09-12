@@ -1,1 +1,1 @@
-# Front end project a diary to assign tasks.
+# Front end project about a diary to assign tasks.
