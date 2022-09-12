@@ -1,35 +1,15 @@
-import { useState } from "react";
-import styled from "styled-components";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import React from 'react'
+import Hours from '../components/calendar/Hours'
+import Layout from '../components/calendar/Layout'
+import WeekDays from '../components/calendar/Weekdays';
 
-const CalendarContainer = styled.div`
-  width: 100%;
-  min-height: 600px;
-  display: flex;
-  justify-content: center;
-`;
-
-const CalendarContainerLeft = styled.div`
-  width: 30%;
-  background-color: aliceblue;
-`;
-
-const CalendarContainerRight = styled.div`
-  width: 60%;
-`;
-
-const CalendarPage = () => {
-  const [value, onChange] = useState(new Date());
-
+const Calendar = () => {
   return (
-    <CalendarContainer>
-      <CalendarContainerLeft>adsdas</CalendarContainerLeft>
-      <CalendarContainerRight>
-        <Calendar onChange={onChange} value={value}/>
-      </CalendarContainerRight>
-    </CalendarContainer>
-  );
-};
+    <Layout>
+      <WeekDays />
+      <Hours />
+    </Layout>
+  )
+}
 
-export default CalendarPage;
+export default Calendar;

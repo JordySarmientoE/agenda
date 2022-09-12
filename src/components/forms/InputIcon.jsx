@@ -32,11 +32,27 @@ const IconContainer = styled.div`
   position: relative;
 `;
 
-const InputIcon = ({ icon, placeholder, type, innerRef }) => {
+const InputIcon = ({ icon, placeholder, type, innerRef: ref, name, value, onChange }) => {
+
+  let options = {
+    placeholder,
+    type,
+    ref,
+    name,
+    value,
+    onChange
+  };
+
+  Object.keys(options).forEach(key => {
+    if (options[key] === undefined) {
+      delete options[key];
+    }
+  });
+
   return (
     <IconContainer>
       <IconLeft src={icon} />
-      <InputLeft placeholder={placeholder} type={type} ref={innerRef} />
+      <InputLeft {...options} />
     </IconContainer>
   );
 };

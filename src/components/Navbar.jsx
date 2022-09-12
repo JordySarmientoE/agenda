@@ -8,6 +8,7 @@ import { BiLogOut } from "react-icons/bi";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { MdOutlineLightMode, MdOutlineDarkMode } from "react-icons/md";
 import { colorContext } from "../context/ColorContext";
+import AuthActions from "../actions/authAction";
 
 const Nav = styled.nav`
   display: flex;
@@ -85,8 +86,7 @@ const Navbar = () => {
   const logOut = (event) => {
     event.preventDefault();
     setUser({
-      data: null,
-      isLogged: false,
+      type: AuthActions.LOGOUT
     });
     navigate("/login");
   };
@@ -112,7 +112,7 @@ const Navbar = () => {
           to="/"
           style={{
             textDecorationLine: "none",
-            color: darkMode ? colors.white : colors.black_color,
+            color: colors.white,
           }}
         >
           Mi Agenda
@@ -132,7 +132,7 @@ const Navbar = () => {
               to="/"
               style={{
                 textDecorationLine: "none",
-                color: darkMode ? colors.white : colors.black_color,
+                color: colors.white,
                 fontWeight: "bold",
               }}
             >
@@ -144,7 +144,7 @@ const Navbar = () => {
               to="/calendar"
               style={{
                 textDecorationLine: "none",
-                color: darkMode ? colors.white : colors.black_color,
+                color: colors.white,
                 fontWeight: "bold",
               }}
             >
@@ -155,7 +155,7 @@ const Navbar = () => {
       )}
       {shown && (
         <UserOptions shown={shown}>
-          {user.isLogged && <TitleUser>{user.data?.email}</TitleUser>}
+          {user.isLogged && <TitleUser>{user.data?.data?.email}</TitleUser>}
           {darkMode ? (
             <ColorContainer theme={darkMode ? 1 : 0}>
               <MdOutlineLightMode

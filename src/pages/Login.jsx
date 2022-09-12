@@ -16,6 +16,7 @@ import ContainerInnerLeft from "../components/containers/ContainerInnerLeft";
 import ContainerInnerRight from "../components/containers/ContainerInnerRight";
 import { colorContext } from "../context/ColorContext";
 import ColorChange from "../components/buttons/ColorChange";
+import AuthActions from "../actions/authAction";
 
 const LoginTitle = styled.h3`
   color: ${(props) => (props.mode ? colors.white : colors.black_color)};
@@ -38,13 +39,17 @@ const Login = () => {
 
   const login = (event) => {
     event.preventDefault();
+
     setUser({
-      isLogged: true,
-      data: {
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      },
-    });
+      type: AuthActions.LOGIN,
+      payload: {
+        isLogged: true,
+        data: {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        }
+      }
+    })
     navigate("/");
   };
 
@@ -67,12 +72,14 @@ const Login = () => {
               placeholder="Correo"
               type="email"
               icon={user}
+              name="email"
             />
             <InputIcon
               placeholder="Contraseña"
               type="password"
               icon={password}
               innerRef={passwordRef}
+              name="password"
             />
             <Button theme="secondary" onClick={login}>
               LOGIN
